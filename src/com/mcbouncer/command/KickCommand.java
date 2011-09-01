@@ -22,10 +22,10 @@ public class KickCommand extends BaseCommand {
             
             String reason = MCBouncerUtil.getReasonOrDefault(args, MCBouncerUtil.implodeWithoutFirstElement(args, " "), MCBConfiguration.getDefaultKickMessage());
 
-            this.sendMessageToMods(ChatColor.RED + name + " was kicked for " + reason);
+            this.sendAlert(ChatColor.RED + name + " kicked: (" + reason + ")");
             MCBouncer.log.info(this.getSenderName() + " kicked " + name + " - " + reason);
 
-            this.kickPlayer(name, "Kicked: " + reason);
+            this.kickPlayer(name, "KICKED: " + reason);
             return true;
         }
         else {

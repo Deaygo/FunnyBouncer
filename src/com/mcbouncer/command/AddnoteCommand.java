@@ -1,7 +1,5 @@
 package com.mcbouncer.command;
 
-import org.bukkit.entity.Player;
-
 import com.mcbouncer.plugin.BaseCommand;
 import com.mcbouncer.plugin.MCBouncer;
 import com.mcbouncer.util.MCBouncerAPI;
@@ -27,11 +25,7 @@ public class AddnoteCommand extends BaseCommand {
         boolean result = MCBouncerUtil.addNote(playerName, this.getSenderName(), note);
         if (result) {
             MCBouncer.log.info(this.getSenderName() + " added note to " + playerName + " - " + note);
-            for(Player p:parent.getServer().getOnlinePlayers()) {
-            	if(p!=null && p.hasPermission("MCBouncer.alerts")) {
-            		p.sendMessage(ChatColor.LIGHT_PURPLE + this.getSenderName() + " added a note to " + playerName + " (" +  note + ")");
-            		}
-            	}
+           this.sendAlert(ChatColor.LIGHT_PURPLE + this.getSenderName() + " added a note to " + playerName + " (" +  note + ")");
         } else {
             this.sendMessageToSender(ChatColor.RED + MCBouncerAPI.getError());
         }
