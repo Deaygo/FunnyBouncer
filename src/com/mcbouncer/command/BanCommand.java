@@ -1,5 +1,7 @@
 package com.mcbouncer.command;
 
+import org.bukkit.entity.Player;
+
 import com.mcbouncer.plugin.BaseCommand;
 import com.mcbouncer.plugin.MCBouncer;
 import com.mcbouncer.util.MCBouncerAPI;
@@ -22,15 +24,20 @@ public class BanCommand extends BaseCommand {
         String reason = MCBouncerUtil.getReasonOrDefault(args, MCBouncerUtil.implodeWithoutFirstElement(args, " "), MCBConfiguration.getDefaultReason());
 
         if (playerName != null) {
-            this.kickPlayer(playerName, "Banned: " + reason);
+            this.kickPlayer(playerName, "BANNED: " + reason);
         } else {
             playerName = args[0];
         }
 
         boolean result = MCBouncerUtil.addBan(playerName, this.getSenderName(), reason);
         if (result) {
-            MCBouncer.log.info(this.getSenderName() + " banning " + playerName + " - " + reason);
-            this.sendMessageToSender(ChatColor.GREEN + "User " + playerName + " banned successfully.");
+            MCBouncer.log.info(this.getSenderName() + " banning " + playerName + " - " + reason);;
+            parent.getServer().broadcastMessage(ChatColor.RED + playerName + "banned: (" + reason + ")");
+            for(Player p:plugin.getServer().getOnlinePlayers()) {
+            	if(p!=null && p.hasPermission("node")) {
+            		p.sendMessage("jackass");
+            		}
+            	}
         } else {
             this.sendMessageToSender(ChatColor.RED + MCBouncerAPI.getError());
         }
