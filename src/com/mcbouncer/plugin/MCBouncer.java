@@ -113,5 +113,12 @@ public class MCBouncer extends JavaPlugin {
             }
         }
     }
+    public void messageAlert(String message) {
+        for (Player player : this.getServer().getOnlinePlayers()) {
+            if (this.hasPermission(player, "mcbouncer.alerts")) {
+                player.sendMessage(message);
+            }
+        }
+    }
 
 }
