@@ -30,7 +30,7 @@ public class BanCommand extends BaseCommand {
         boolean result = MCBouncerUtil.addBan(playerName, this.getSenderName(), reason);
         if (result) {
             MCBouncer.log.info(this.getSenderName() + " banning " + playerName + " - " + reason);;
-            	this.sendAlert(ChatColor.LIGHT_PURPLE + this.getSenderName() + "just banned" + playerName + reason);
+            	this.sendAlert(ChatColor.LIGHT_PURPLE + this.getSenderName() + "just banned" + playerName + reason, ChatColor.RED + playerName + " banned (" + reason + ")");
         } else {
             this.sendMessageToSender(ChatColor.RED + MCBouncerAPI.getError());
         }

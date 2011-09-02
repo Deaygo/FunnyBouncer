@@ -62,8 +62,12 @@ public abstract class BaseCommand implements ICommand {
         parent.messageMods(message);
     }
 
-    public void sendAlert(String message) {
-    	parent.messageAlert(message);
+    public void sendAlert(String alert, String normal) {
+    	parent.messageAlert(alert, normal);
+    }
+    
+    public void justsendAlert(String message) {
+    	parent.justmessageAlert(message);
     }
     
     public void kickPlayer(String player, String reason) {

@@ -25,11 +25,12 @@ public class AddnoteCommand extends BaseCommand {
         boolean result = MCBouncerUtil.addNote(playerName, this.getSenderName(), note);
         if (result) {
             MCBouncer.log.info(this.getSenderName() + " added note to " + playerName + " - " + note);
-           this.sendAlert(ChatColor.LIGHT_PURPLE + this.getSenderName() + " added a note to " + playerName + " (" +  note + ")");
+           this.justsendAlert(ChatColor.LIGHT_PURPLE + this.getSenderName() + " added a note to " + playerName + " (" +  note + ")");
         } else {
             this.sendMessageToSender(ChatColor.RED + MCBouncerAPI.getError());
         }
 
         return true;
     }
+
 }
